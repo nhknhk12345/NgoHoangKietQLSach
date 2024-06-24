@@ -3,6 +3,7 @@ package com.example.NgoHoangKietQLSach.entity;
 import com.example.NgoHoangKietQLSach.Validator.annotation.ValidCategoryId;
 import com.example.NgoHoangKietQLSach.Validator.annotation.ValidUserId;
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -31,4 +32,5 @@ public class Book {
     @JoinColumn (name = "user_id", referencedColumnName = "id")
     @ValidUserId
     private User user;
+
 }

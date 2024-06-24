@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
@@ -19,7 +20,7 @@
             <th>Author</th>
             <th>Price</th>
             <th>Category</th>
-
+            <th sec:authorize="hasAnyAuthority('ADMIN')">Action</th>
         </tr>
         <tr th:each="book : ${books}">
             <td th:text="${book.id}"></td>
@@ -27,15 +28,15 @@
             <td th:text="${book.author}"></td>
             <td th:text="${book.price}"></td>
             <td th:text="${book.category != null ? book.category.name : 'N/A'}"></td>
-            <td>
+            <td sec:authorize="hasAnyAuthority('ADMIN')">
                 <a th:href="@{/books/edit/{id}(id=__${book.id}__)}" class="text-info">Edit</a>  |
                 <a th:href="@{/books/delete/{id}(id=__${book.id}__)}"
-                    onclick="deleteBook(this);
-                    return fasle;" class="text-danger">Delete</a>
+                   onclick="deleteBook(this); return fasle;" class="text-danger">Delete</a>
             </td>
         </tr>
     </table>
 </div>
+
 <th:block th:replace="~{layout :: footer}"></th:block>
 </body>
 </html>
